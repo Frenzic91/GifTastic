@@ -21,6 +21,8 @@
             <div id="tags-section"></div>
         </div>
 
+        <br>
+
         <!-- gif and form row -->
         <div class="row">
             <!-- dynamically generated gifs column -->
@@ -48,5 +50,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let topics = ["skunk", "badger", "bear", "raccoon", "cardinal", "kitten", "wolverine", "giraffe", "lion"];
+
+        /* function definitions */
+
+        function generateTag(tag) {
+            let tagButton = $("<input />", {"id": tag, "value": tag, "type": "submit"});
+            $("#tags-section").append(tagButton);
+        }
+
+        /* main code */
+
+        topics.forEach(function(elmnt) {
+            generateTag(elmnt);   
+        });
+
+    </script>
 </body>
 </html>
