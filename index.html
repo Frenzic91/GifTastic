@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
     <meta charset="utf-8" />
     <title>Page Title</title>
@@ -8,6 +9,7 @@
     <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container">
 
@@ -45,28 +47,56 @@
                                 <input id="submit-tag" value="Submit" type="submit">
                             </div>
                         </form>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        let apiKey = "aSwIwSxbM13u1J4XORZyN5wD28RQr5r3";
+        let numResults = 10;
+
         let topics = ["skunk", "badger", "bear", "raccoon", "cardinal", "kitten", "wolverine", "giraffe", "lion"];
 
         /* function definitions */
 
         function generateTag(tag) {
-            let tagButton = $("<input />", {"id": tag, "value": tag, "type": "submit"});
+            let tagButton = $("<input />", { "class": "tag-button", "id": tag, "value": tag, "type": "submit" });
             $("#tags-section").append(tagButton);
+        }
+
+        function handleGifRequest(searchParam) {
+            // format the search request and send it off
+            let URL = "https://api.giphy.com/v1/gifs/search?";
+            URL += $.param({
+                "api_key": apiKey,
+                "q": searchParam,
+                "limit": numResults
+            });
+
+            $.get(URL, function (response) {
+                // use the gif url from the response to generate the appropriate html and append it to gif section
+                let div = $("<div></div>");
+                let paragraph = $("<p></p>", {text: response.data[0].rating});
+                let img = $("<img></img>", {"src": response.data[0].images.downsized.url});
+
+                $("#gifs-section").append(div.append(paragraph).append(img));
+            });
         }
 
         /* main code */
 
-        topics.forEach(function(elmnt) {
-            generateTag(elmnt);   
+        $(document.body).on("click", ".tag-button", function() {
+            let searchParam = $(this).attr("value");
+            handleGifRequest(searchParam);
+        });
+
+        topics.forEach(function (elmnt) {
+            generateTag(elmnt);
         });
 
     </script>
 </body>
+
 </html>
