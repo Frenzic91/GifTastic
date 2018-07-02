@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\
+    <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <!-- jumbostron header -->
+        <div class="jumbotron">
+            <h1 class="text-center">GifTastic!</h1>
+        </div>
+
+        <!-- dynamically generated tags row -->
+        <div class="row">
+            <div id="tags-section"></div>
+        </div>
+
+        <!-- gif and form row -->
+        <div class="row">
+            <!-- dynamically generated gifs column -->
+            <div class="col-md-7">
+                <div id="gifs-section"></div>
+            </div>
+
+            <!-- form column -->
+            <div class="col-md-5">
+                <div class="card card-default">
+                    <div class="card-heading">
+                        <h5>Add a tag</h5>
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group row">
+                                <input id="tag-input" type="text">
+                            </div>
+                            <div class="form-group row">
+                                <input id="submit-tag" value="Submit" type="submit">
+                            </div>
+                        </form>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
