@@ -77,17 +77,22 @@
 
             $.get(URL, function (response) {
                 // use the gif url from the response to generate the appropriate html and append it to gif section
-                let div = $("<div></div>");
-                let paragraph = $("<p></p>", {text: response.data[0].rating});
-                let img = $("<img></img>", {"src": response.data[0].images.downsized.url});
 
-                $("#gifs-section").append(div.append(paragraph).append(img));
+                for (let i = 0; i < numResults; i++) {
+                    let div = $("<div></div>");
+                    let paragraph = $("<p></p>", {text: response.data[i].rating});
+                    let img = $("<img></img>", {"src": response.data[i].images.downsized.url});
+
+                    $("#gifs-section").append(div.append(paragraph).append(img));
+                }
             });
         }
 
         /* main code */
 
         $(document.body).on("click", ".tag-button", function() {
+            $("#gifs-section").empty();
+
             let searchParam = $(this).attr("value");
             handleGifRequest(searchParam);
         });
