@@ -96,6 +96,14 @@
             generateTag(elmnt);
         });
 
+        $("#submit-tag").click(function(e) {
+            e.preventDefault();
+
+            let newTagText = $("#tag-input").val().trim();
+            topics.push(newTagText);
+            generateTag(newTagText);
+        });
+
     </script>
 </body>
 
